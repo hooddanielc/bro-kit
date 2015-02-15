@@ -138,6 +138,54 @@ FIXTURE(member_normalize) {
   EXPECT_EQ(c.z, 0);
 }
 
+FIXTURE(vector_magnitude) {
+  dj::Vector3 a(0, 0, 1);
+  EXPECT_EQ(1, dj::vectorMag(a));
+}
+
+FIXTURE(vector_dot_product) {
+  dj::Vector3 a(12, 20, 0);
+  dj::Vector3 b(16, -5, 0);
+  EXPECT_EQ(92, a * b);
+  dj::Vector3 c(7, 3, 1);
+  dj::Vector3 d(8, 9, 4);
+  EXPECT_EQ(87, c * d);
+}
+
+FIXTURE(vector_cross_product) {
+  dj::Vector3 a(7, 3, 1);
+  dj::Vector3 b(8, 9, 4);
+  dj::Vector3 crossAB = crossProduct(a, b);
+  EXPECT_EQ(crossAB.x, 3);
+  EXPECT_EQ(crossAB.y, -20);
+  EXPECT_EQ(crossAB.z, 39);
+}
+
+FIXTURE(lvalue_scalar) {
+  dj::Vector3 a(1, 2, 3);
+  double ok = 3;
+  dj::Vector3 b = ok * a;
+  EXPECT_EQ(b.x, 3);
+  EXPECT_EQ(b.y, 6);
+  EXPECT_EQ(b.z, 9);
+}
+
+FIXTURE(vector_distance) {
+  dj::Vector3 a(1, 1, 1);
+  dj::Vector3 b(1, 1, 2);
+  EXPECT_EQ(distance(a, b), 1);
+  dj::Vector3 c(4, 2, 4);
+  dj::Vector3 d(9, 2, 4);
+  EXPECT_EQ(distance(c, d), 5);
+}
+
+FIXTURE(zero_vector_constant) {
+  dj::Vector3 a(1, 1, 1);
+  EXPECT_EQ(0, dj::kZeroVector.x);
+  EXPECT_EQ(0, dj::kZeroVector.y);
+  EXPECT_EQ(0, dj::kZeroVector.z);
+}
+
 int main(int argc, char *argv[]) {
   return dj::lick::main(argc, argv);
 }

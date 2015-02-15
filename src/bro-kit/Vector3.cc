@@ -104,33 +104,4 @@ double Vector3::operator *(const Vector3 &a) const {
   return x * a.x + y * a.y + z * a.z;
 }
 
-// compute the magnitude of the vector
-inline double vectorMag(const Vector3 &a) {
-  return sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
-}
-
-// compute the cross product of two vectors
-inline Vector3 crossProduct(const Vector3 &a, const Vector3 &b) {
-  return Vector3(
-    a.y * b.z - a.z * b.y,
-    a.z * b.x - a.x * b.z,
-    a.x * b.y - a.y * b.x
-  );
-}
-
-// scalar on the left multiplication, for symmetry
-inline Vector3 operator *(double k, const Vector3 &v) {
-  return Vector3(k * v.x, k * v.y, k * v.z);
-}
-
-// compute the distance between 2 points
-inline double distance(const Vector3 &a, const Vector3 &b) {
-  double dx = a.x - b.x;
-  double dy = a.y - b.y;
-  double dz = a.z - b.z;
-  return sqrt(dx * dx + dy * dy + dz * dz);
-}
-
-extern const Vector3 kZeroVector;
-
 } // namespace dj
